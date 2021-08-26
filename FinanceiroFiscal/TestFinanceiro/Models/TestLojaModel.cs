@@ -138,5 +138,31 @@ namespace TestFinanceiro.Models
             //Assert
             Assert.IsType<ContactModel>(loja.Contact);
         }
+        [Fact]
+        public void TestOfCurrentForStoreModel()
+        {
+            //Arrenge
+            LojaModel loja;
+            CurrentAccount currentAccount;
+            //Act
+            currentAccount = new CurrentAccount();
+            loja = new LojaModel();
+            loja.Current = currentAccount;
+            //Assert
+            Assert.Equal(currentAccount, loja.Current);
+        }
+        [Fact]
+        public void TestOfTypeForCurrentOfStroreModel()
+        {
+            //Arrenge
+            LojaModel loja;
+
+            //Act
+            loja = new LojaModel();
+            loja.Current = new CurrentAccount();
+            //Assert
+            Assert.IsType<CurrentAccount>(loja.Current);
+        }
+
     }
 }

@@ -13,5 +13,6 @@ namespace Data.Models
         public string IE { get; set; }
         public Address Addres { get; set; }
         public ContactModel Contact { get; set; }
+        public CurrentAccount Current { get; set; }
     }
 }
