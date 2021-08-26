@@ -28,7 +28,6 @@ namespace TestFinanceiro.Models
 
             Assert.IsAssignableFrom<BaseModel>(instance);
         }
-
         [Fact]
         public void TestProperdyAccoutnNumberClassCurrentAccount() 
         {
@@ -39,19 +38,20 @@ namespace TestFinanceiro.Models
             instance.AccountNumber = resultado;
             //Assert
             Assert.Equal(resultado,instance.AccountNumber);
+            Assert.IsType<int>(instance.AccountNumber);
         }
-
         [Fact]
         public void TestProperdyLimitClassCurrentAccount()
         {
             //Arrange
             CurrentAccount instance = new CurrentAccount();
-            decimal resultado = 265.63m;
+            decimal result = 65.32m;
             //Act
-            instance.Limit = resultado;
+            instance.Limit = result;
             //Assert
-            Assert.Equal(resultado, instance.Limit);
             Assert.IsType<decimal>(instance.Limit);
+            Assert.Equal(result , instance.Limit);
+            
         }
         [Fact]
         public void TestProperdyBalanceClassCurrentAccount()
@@ -65,7 +65,6 @@ namespace TestFinanceiro.Models
             Assert.Equal(resultado, instance.Balance);
             Assert.IsType<decimal>(instance.Balance);
         }
-
         [Fact]
         public void TestProperdyComposition()
         {

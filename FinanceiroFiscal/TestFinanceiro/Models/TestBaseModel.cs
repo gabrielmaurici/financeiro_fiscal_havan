@@ -20,6 +20,5 @@ namespace TestFinanceiro.Models
             //Assert
             Assert.Throws<MissingMethodException>(tb);
         }
-        
     }
 }
