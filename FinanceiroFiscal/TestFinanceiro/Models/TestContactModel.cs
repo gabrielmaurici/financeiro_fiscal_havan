@@ -33,6 +33,7 @@ namespace TestFinanceiro.Models
             model.Id = id;
             //Assert
             Assert.Equal(id, model.Id);
+            Assert.IsType<int>(model.Id);
         }
         [Fact]
         public void TestPhoneOfContactModel()
