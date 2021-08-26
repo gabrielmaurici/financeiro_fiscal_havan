@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    class Installment : BaseModel
+    public class Installment : BaseModel
     {
         public int ParcelQuantity { get; set; }
         public float TaxFees { get; set; }
