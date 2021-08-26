@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TestFinanceiro.Models
 {
-    public class TesteInstallment
+    public class TestInstallment
     {
         [Fact]
         public void TesteVariaveisInstallment()
