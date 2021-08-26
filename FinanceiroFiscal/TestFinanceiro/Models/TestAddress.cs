@@ -14,20 +14,20 @@ namespace TestFinanceiro.Models
         [Fact]
         public void TestInstanceClassAddress()
         {
-            Address providerRequestInstance;
+            Address instance;
 
-            providerRequestInstance = Activator.CreateInstance<Address>();
+            instance = Activator.CreateInstance<Address>();
 
-            Assert.IsType<Address>(providerRequestInstance);
+            Assert.IsType<Address>(instance);
         }
         [Fact]
         public void TestInherintanceClassAddresWithBaseModel()
         {
-            Address providerRequestInstance;
+            Address instance;
 
-            providerRequestInstance = Activator.CreateInstance<Address>();
+            instance = Activator.CreateInstance<Address>();
 
-            Assert.IsAssignableFrom<BaseModel>(providerRequestInstance);
+            Assert.IsAssignableFrom<BaseModel>(instance);
         }
 
         [Fact]
