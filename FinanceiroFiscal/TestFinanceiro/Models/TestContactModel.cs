@@ -54,9 +54,9 @@ namespace TestFinanceiro.Models
             string email = "TestEmail";
             //Act
             model = new ContactModel();
-            model.email = email;
+            model.Email = email;
             //Assert
-            Assert.Equal(email, model.email);
+            Assert.Equal(email, model.Email);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Data
     public class ContactModel:BaseModel
     {
         public string Phone { get; set; }
-        public string email { get; set; }
+        public string Email { get; set; }
     }
 }
