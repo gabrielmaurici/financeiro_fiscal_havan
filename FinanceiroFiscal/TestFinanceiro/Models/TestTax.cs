@@ -6,7 +6,7 @@ namespace TestFinanceiro.Models
     public class TestTax
     {
         [Fact]
-        public void TestHerancaBaseTaxModel()
+        public void TestinheritanceBaseTaxModel()
         {
             //Arrange
             Tax tax = new Tax();
