@@ -3,6 +3,7 @@ using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -31,73 +32,221 @@ namespace TestFinanceiro.Models
         }
 
         [Fact]
-        public void TestPropriedadeStateClasseAddress() 
+        public void TestPropriedadeStateClasseAddressExiste()
         {
             //Arrange
-            Address ad = new Address();
-            string resultado = "String";
+            Type t = typeof(Address);
             //Act
-            ad.State = resultado;
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "State");
             //Assert
-            Assert.Equal(resultado, ad.State);
+            Assert.NotNull(pI);
+        }
+        [Fact]
+        public void TestarSePropriedadeStateEString()
+        {
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "State");
+            Type typeString = typeof(string);
+            Type typeProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeString, typeProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeStateGetSet()
+        {
+            Address s = new Address();
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "State");
+
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(s, "");
+                valueProp = pI.GetValue(s);
+            }
+
+            Assert.NotNull(valueProp);
+        }
+        [Fact]
+        public void TestPropriedadeCityClasseAddressExiste()
+        {
+            //Arrange
+            Type t = typeof(Address);
+            //Act
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "City");
+            //Assert
+            Assert.NotNull(pI);
+        }
+        [Fact]
+        public void TestarSePropriedadeCityEString()
+        {
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "City");
+            Type typeString = typeof(string);
+            Type typeProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeString, typeProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeCityGetSet()
+        {
+            Address s = new Address();
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "City");
+
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(s, "");
+                valueProp = pI.GetValue(s);
+            }
+
+            Assert.NotNull(valueProp);
+        }
+        [Fact]
+        public void TestPropriedadeStreetClasseAddressExiste()
+        {
+            //Arrange
+            Type t = typeof(Address);
+            //Act
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Street");
+            //Assert
+            Assert.NotNull(pI);
+        }
+        [Fact]
+        public void TestarSePropriedadeStreetEString()
+        {
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Street");
+            Type typeString = typeof(string);
+            Type typeProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeString, typeProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeStreetGetSet()
+        {
+            Address s = new Address();
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Street");
+
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(s, "");
+                valueProp = pI.GetValue(s);
+            }
+
+            Assert.NotNull(valueProp);
+        }
+        [Fact]
+        public void TestPropriedadeNeighborhoodClasseAddressExiste()
+        {
+            //Arrange
+            Type t = typeof(Address);
+            //Act
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Neighborhood");
+            //Assert
+            Assert.NotNull(pI);
+        }
+        [Fact]
+        public void TestarSePropriedadeNeighborhoodEString()
+        {
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Neighborhood");
+            Type typeString = typeof(string);
+            Type typeProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeString, typeProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeNeighborhoodGetSet()
+        {
+            Address s = new Address();
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Neighborhood");
+
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(s, "");
+                valueProp = pI.GetValue(s);
+            }
+
+            Assert.NotNull(valueProp);
+        }
+        [Fact]
+        public void TestPropriedadeNumberClasseAddressExiste()
+        {
+            //Arrange
+            Type t = typeof(Address);
+            //Act
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Number");
+            //Assert
+            Assert.NotNull(pI);
+        }
+        [Fact]
+        public void TestarSePropriedadeNumberEString()
+        {
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Number");
+            Type typeString = typeof(string);
+            Type typeProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeString, typeProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeNumberGetSet()
+        {
+            Address s = new Address();
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "Number");
+
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(s, "");
+                valueProp = pI.GetValue(s);
+            }
+
+            Assert.NotNull(valueProp);
         }
 
         [Fact]
-        public void TestPropriedadeCityClasseAddress()
+        public void TestPropriedadeCEPClasseAddressExiste()
         {
             //Arrange
-            Address ad = new Address();
-            string resultado = "String";
+            Type t = typeof(Address);
             //Act
-            ad.City = resultado;
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "CEP");
             //Assert
-            Assert.Equal(resultado, ad.City);
+            Assert.NotNull(pI);
         }
+        [Fact]
+        public void TestarSePropriedadeCEPEString()
+        {
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "CEP");
+            Type typeString = typeof(string);
+            Type typeProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeString, typeProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeCEPGetSet()
+        {
+            Address s = new Address();
+            Type t = typeof(Address);
+            PropertyInfo pI = t.GetProperties().FirstOrDefault(p => p.Name == "CEP");
 
-        [Fact]
-        public void TestPropriedadeStreetClasseAddress()
-        {
-            //Arrange
-            Address ad = new Address();
-            string resultado = "String";
-            //Act
-            ad.Street = resultado;
-            //Assert
-            Assert.Equal(resultado, ad.Street);
-        }
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
 
-        [Fact]
-        public void TestPropriedadeNeighborhoodClasseAddress()
-        {
-            //Arrange
-            Address ad = new Address();
-            string resultado = "String";
-            //Act
-            ad.Neighborhood = resultado;
-            //Assert
-            Assert.Equal(resultado, ad.Neighborhood);
-        }
-        [Fact]
-        public void TestPropriedadeNumberClasseAddress()
-        {
-            //Arrange
-            Address ad = new Address();
-            string resultado = "String";
-            //Act
-            ad.Number = resultado;
-            //Assert
-            Assert.Equal(resultado, ad.Number);
-        }
-        [Fact]
-        public void TestPropriedadeCEPClasseAddress()
-        {
-            //Arrange
-            Address ad = new Address();
-            string resultado = "String";
-            //Act
-            ad.CEP = resultado;
-            //Assert
-            Assert.Equal(resultado, ad.CEP);
-        }
+                pI.SetValue(s, "");
+                valueProp = pI.GetValue(s);
+            }
+
+            Assert.NotNull(valueProp);
+        } 
     }
 }
