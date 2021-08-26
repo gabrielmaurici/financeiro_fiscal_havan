@@ -11,7 +11,7 @@ namespace TestFinanceiro.Models
     public class TestBaseModel
     {
         [Fact]
-        public void TestInstanciacaoBaseModel()
+        public void TestInstanceBaseModel()
         {
             //Arrange
             Action tb;
