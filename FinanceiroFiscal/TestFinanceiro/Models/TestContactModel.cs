@@ -23,6 +23,17 @@ namespace TestFinanceiro.Models
             Assert.IsType<ContactModel>(model);
         }
         [Fact]
+        public void TestOfHeritageForContactModel()
+        {
+            //Arrange
+            ContactModel contact;
+            //Act
+            contact = new ContactModel();
+            //Assert
+            Assert.IsAssignableFrom<BaseModel>(contact);
+        }
+
+        [Fact]
         public void TestIdOfContactModel()
         {
             //Arrange
@@ -47,6 +58,17 @@ namespace TestFinanceiro.Models
             Assert.Equal(phone, model.Phone);
         }
         [Fact]
+        public void TestOfTypeForPhonejOfContactModel()
+        {
+            //Arrenge
+            ContactModel model;
+            //Act 
+            model = new ContactModel();
+            model.Phone = "";
+            //Assert
+            Assert.IsType<string>(model.Phone);
+        }
+        [Fact]
         public void TestEmailOfContactModel()
         {
             //Arrange
@@ -57,6 +79,17 @@ namespace TestFinanceiro.Models
             model.Email = email;
             //Assert
             Assert.Equal(email, model.Email);
+        }
+        [Fact]
+        public void TestOfTypeForEmailOfContactModel()
+        {
+            //Arrenge
+            ContactModel model;
+            //Act 
+            model = new ContactModel();
+            model.Email = "";
+            //Assert
+            Assert.IsType<string>(model.Email);
         }
     }
 }
