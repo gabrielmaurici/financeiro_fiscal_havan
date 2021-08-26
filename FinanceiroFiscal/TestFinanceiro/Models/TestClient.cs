@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -29,41 +30,88 @@ namespace TestFinanceiro.Models
             Assert.IsType<Client>(c);
         }
         [Fact]
-        public void TestClientProperties()
+        public void TesteClientPropertiesExist()
         {
-            Client c;
-            string setString = "a";
-            DateTime d = new DateTime(1999, 08, 22);
-            var st = typeof(string);
-            var dt = typeof(DateTime);
+            Type clientType = typeof(Client);
+            PropertyInfo pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Name");
 
-            c = Activator.CreateInstance<Client>();
-            c.Name = setString;
-            c.Cpf = setString;
-            c.Rg = setString;
-            c.Birthday = d;
+            pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Birthday");
+            Assert.NotNull(pI);
+            pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Cpf");
+            Assert.NotNull(pI);
+            pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Rg");
+            Assert.NotNull(pI);
+        }
+        [Fact]
+        public void TestClientPropertiesType()
+        {
+            Type clientType = typeof(Client);
 
-            //var assignName = c.Name;
-            //var assignCpf = c.Cpf;
-            //var assignRg = c.Rg;
-            //var assignBirthday = c.Birthday;
+            PropertyInfo pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Name");
+            Type typeToCheck = typeof(string);
+            Type typeOfProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeToCheck, typeOfProperty);
 
-            //TypeTestSet
-            Assert.IsAssignableFrom( st, c.Name);
-            Assert.IsAssignableFrom( st, c.Cpf);
-            Assert.IsAssignableFrom( st, c.Rg);
-            Assert.IsAssignableFrom( dt, c.Birthday);
-            //AssignTestSet
-            Assert.NotEqual<string>("", c.Name);
-            Assert.NotEqual<string>("", c.Cpf);
-            Assert.NotEqual<string>("", c.Rg);
-            Assert.Equal<DateTime>(d, c.Birthday);
-            //TypeTestGet
-            //Assert.IsAssignableFrom(c.Name.GetType(), assignName);
-            //Assert.IsAssignableFrom(c.Cpf.GetType(), assignCpf);
-            //Assert.IsAssignableFrom(c.Rg.GetType(), assignRg);
-            //Assert.IsAssignableFrom(c.Birthday.GetType(), assignBirthday);
-            //AssignTestGet
+            pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Cpf");
+            typeToCheck = typeof(string);
+            typeOfProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeToCheck, typeOfProperty);
+
+            pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Rg");
+            typeToCheck = typeof(string);
+            typeOfProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeToCheck, typeOfProperty);
+
+            pI = clientType.GetProperties().FirstOrDefault(p => p.Name == "Birthday");
+            typeToCheck = typeof(DateTime);
+            typeOfProperty = pI != null ? pI.PropertyType : null;
+            Assert.Equal(typeToCheck, typeOfProperty);
+        }
+        [Fact]
+        public void TestarSePropriedadeDescricaoGet()
+        {
+            Client client = new Client();
+            Type type = typeof(Client);
+
+            PropertyInfo pI = type.GetProperties().FirstOrDefault(p => p.Name == "Name");
+            object valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(client, "");
+                valueProp = pI.GetValue(client);
+            }
+            Assert.NotNull(valueProp);
+
+            pI = type.GetProperties().FirstOrDefault(p => p.Name == "Cpf");
+            valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(client, "");
+                valueProp = pI.GetValue(client);
+            }
+            Assert.NotNull(valueProp);
+
+            pI = type.GetProperties().FirstOrDefault(p => p.Name == "Rg");
+            valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(String))
+            {
+
+                pI.SetValue(client, "");
+                valueProp = pI.GetValue(client);
+            }
+            Assert.NotNull(valueProp);
+
+            pI = type.GetProperties().FirstOrDefault(p => p.Name == "Birthday");
+            valueProp = null;
+            if (pI != null && pI.PropertyType == typeof(DateTime))
+            {
+
+                pI.SetValue(client, new DateTime(1999,02,22));
+                valueProp = pI.GetValue(client);
+            }
+            Assert.NotNull(valueProp);
         }
     }
 }
