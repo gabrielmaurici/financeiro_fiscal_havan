@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -29,53 +30,130 @@ namespace TestFinanceiro.Models
             Assert.IsAssignableFrom<BaseModel>(instance);
         }
         [Fact]
-        public void TestProperdyAccoutnNumberClassCurrentAccount() 
+        public void TestaSePropriedadeAccoutnNumberexiste() 
         {
-            //Arrange
-            CurrentAccount instance = new CurrentAccount(); 
-            int resultado = 10;
-            //Act
-            instance.AccountNumber = resultado;
-            //Assert
-            Assert.Equal(resultado,instance.AccountNumber);
-            Assert.IsType<int>(instance.AccountNumber);
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "AccountNumber");
+            Assert.NotNull(pi);
         }
         [Fact]
-        public void TestProperdyLimitClassCurrentAccount()
+        public void TestaPropriedadeAccountNumberEInt() 
         {
-            //Arrange
-            CurrentAccount instance = new CurrentAccount();
-            decimal result = 65.32m;
-            //Act
-            instance.Limit = result;
-            //Assert
-            Assert.IsType<decimal>(instance.Limit);
-            Assert.Equal(result , instance.Limit);
-            
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "AccountNumber");
+            Type typeString = typeof(int);
+            Type typeProperty = pi != null ? pi.PropertyType : null;
+            Assert.Equal(typeString,typeProperty);
         }
         [Fact]
-        public void TestProperdyBalanceClassCurrentAccount()
+        public void TestaPropriedadeAccountNumberGet() 
         {
-            //Arrange
-            CurrentAccount instance = new CurrentAccount();
-            decimal resultado = 265.10m;
-            //Act
-            instance.Balance = resultado;
-            //Assert
-            Assert.Equal(resultado, instance.Balance);
-            Assert.IsType<decimal>(instance.Balance);
+            CurrentAccount ad = new CurrentAccount();
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "AccountNumber");
+            object valueProp = null;
+            if (pi != null && pi.PropertyType== typeof(int)) 
+            {
+                pi.SetValue(ad, 3);
+                valueProp = pi.GetValue(ad);
+            }
+            Assert.NotNull(valueProp);
+        }
+
+        [Fact]
+        public void TestaSePropriedadeLimitExiste()
+        {
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Limit");
+            Assert.NotNull(pi);
         }
         [Fact]
-        public void TestProperdyComposition()
+        public void TestaPropriedadeLimitEDecimal()
         {
-            //Arrange
-            CurrentAccount instance = new CurrentAccount();
-            Extract extract = new Extract();
-            //Act
-            instance.Extract = extract;
-            //Assert
-            Assert.Equal(extract, instance.Extract);
-            Assert.IsType<Extract>(instance.Extract);
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Limit");
+            Type type = typeof(decimal);
+            Type typeProperty = pi != null ? pi.PropertyType : null;
+            Assert.Equal(type, typeProperty);
+        }
+        [Fact]
+        public void TestaPropriedadeLimitGet()
+        {
+            CurrentAccount ad = new CurrentAccount();
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Limit");
+            object valueProp = null;
+            if (pi != null && pi.PropertyType == typeof(decimal))
+            {
+                pi.SetValue(ad, 10m);
+                valueProp = pi.GetValue(ad);
+            }
+            Assert.NotNull(valueProp);
+        }
+
+        [Fact]
+        public void TestaSePropriedadeBalanceExiste()
+        {
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Balance");
+            Assert.NotNull(pi);
+        }
+        [Fact]
+        public void TestaPropriedadeBalanceEDecimal()
+        {
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Balance");
+            Type type = typeof(decimal);
+            Type typeProperty = pi != null ? pi.PropertyType : null;
+            Assert.Equal(type, typeProperty);
+        }
+        [Fact]
+        public void TestaPropriedadeBalanceGet()
+        {
+            CurrentAccount ad = new CurrentAccount();
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Balance");
+            object valueProp = null;
+            if (pi != null && pi.PropertyType == typeof(decimal))
+            {
+                pi.SetValue(ad, 10m);
+                valueProp = pi.GetValue(ad);
+            }
+            Assert.NotNull(valueProp);
+        }
+        [Fact]
+        public void TestaSePropriedadeExtractExiste()
+        {
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Extract");
+            Assert.NotNull(pi);
+        }
+        [Fact]
+        public void TestaPropriedadeExtractEExtract()
+        {
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Extract");
+            Type type = typeof(Extract);
+            Type typeProperty = pi != null ? pi.PropertyType : null;
+            Assert.Equal(type, typeProperty);
+        }
+        [Fact]
+        public void TestaPropriedadeExtractGet()
+        {
+            CurrentAccount ad = new CurrentAccount();
+            Type t = typeof(CurrentAccount);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "Extract");
+            object valueProp = null;
+            if (pi != null && pi.PropertyType == typeof(Extract))
+            {
+                Extract model = new Extract();
+                model.Id = 1;
+                model.OutPut = 10m;
+                model.Entry = 10m;
+                pi.SetValue(ad, model);
+                valueProp = pi.GetValue(ad);
+            }
+            Assert.NotNull(valueProp);
         }
     }
 }

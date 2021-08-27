@@ -12,6 +12,6 @@ namespace Data.Models
         public DateTime Birthday { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
-        //public CheckingAccount CheckingAccount { get; set; }
+        public CurrentAccount CurrentAccount { get; set; }
     }
 }
