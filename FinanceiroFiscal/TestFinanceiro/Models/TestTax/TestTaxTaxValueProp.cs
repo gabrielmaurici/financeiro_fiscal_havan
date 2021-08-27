@@ -2,9 +2,9 @@
 
 namespace TestFinanceiro.Models.TestTax
 {
-    public class TestTaxTaxValueProp : TestBase<Tax>
+    public class TestTaxTaxValueProp : BaseTestProp<Tax>
     {
-        public TestTaxTaxValueProp() : base ("TaxValue", typeof(float))
+        public TestTaxTaxValueProp() : base ("TaxValue", typeof(float), 10.5F)
         {
         }
     }

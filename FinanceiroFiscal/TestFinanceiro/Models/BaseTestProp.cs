@@ -1,41 +1,28 @@
 ﻿using Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace TestFinanceiro.Models
 {
-    public abstract class TestBase<M> where M:BaseModel
+    public abstract class BaseTestProp<M> where M : BaseModel
     {
         public string propName { get; set; }
         public Type T { get; set; }
-        public TestBase(string name, Type type)
+        public object valueTest { get; set; }
+        public BaseTestProp(string name, Type type, object value)
         {
             this.propName = name;
             this.T = type;
-        }
+            if(value != null)
+            {
+                valueTest = value.GetType()==type ? value : null;
 
-        [Fact]
-        public void TestInstanceTaxModel()
-        {
-            //Arrange
-            M classTest;
-            //Act
-            classTest = Activator.CreateInstance<M>();
-            //Assert
-            Assert.IsAssignableFrom<M>(classTest);
-        }
-
-        [Fact]
-        public void TestInheritanceBaseModel()
-        {
-            //Arrange
-            M classTest;
-            //Act
-            classTest = Activator.CreateInstance<M>();
-            //Assert
-            Assert.IsAssignableFrom<BaseModel>(classTest);
+            }
         }
 
         [Fact]
@@ -62,7 +49,7 @@ namespace TestFinanceiro.Models
         }
 
         [Fact]
-        public void TestGetSetPropNameTaxModel()
+        public void TestGetSetPropInModel()
         {
             //Arrange
             M classTest = Activator.CreateInstance<M>();
@@ -70,10 +57,13 @@ namespace TestFinanceiro.Models
             object valueProp = null;
             //Act
             PropertyInfo classProp = classType.GetProperties().FirstOrDefault(p => p.Name == this.propName);
-            if(classProp != null && classProp.PropertyType == this.T)
+            if(this.valueTest != null)
             {
-                classProp.SetValue(classTest, "OK");
-                valueProp = classProp.GetValue(classTest);
+                if (classProp != null && classProp.PropertyType == this.T && this.valueTest.GetType() == this.T)
+                {
+                    classProp.SetValue(classTest, valueTest);
+                    valueProp = classProp.GetValue(classTest);
+                }
             }
             //Assert
             Assert.NotNull(valueProp);

@@ -2,9 +2,9 @@
 
 namespace TestFinanceiro.Models.TestTax
 {
-    public class TestTaxNameProp : TestBase<Tax>
+    public class TestTaxNameProp : BaseTestProp<Tax>
     {
-        public TestTaxNameProp() : base ("Name", typeof(string))
+        public TestTaxNameProp() : base ("Name", typeof(string), "OK")
         {
         }
     }
