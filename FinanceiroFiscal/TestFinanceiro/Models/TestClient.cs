@@ -113,5 +113,45 @@ namespace TestFinanceiro.Models
             }
             Assert.NotNull(valueProp);
         }
+        [Fact]
+        public void TestaSePropriedadeExtractExiste()
+        {
+            Type t = typeof(Client);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "CurrentAccount");
+            Assert.NotNull(pi);
+        }
+        [Fact]
+        public void TestaPropriedadeExtractEExtract()
+        {
+            Type t = typeof(Client);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "CurrentAccount");
+            Type type = typeof(CurrentAccount);
+            Type typeProperty = pi != null ? pi.PropertyType : null;
+            Assert.Equal(type, typeProperty);
+        }
+        [Fact]
+        public void TestaPropriedadeExtractGet()
+        {
+            Client ad = new Client();
+            Type t = typeof(Client);
+            PropertyInfo pi = t.GetProperties().FirstOrDefault(p => p.Name == "CurrentAccount");
+            object valueProp = null;
+            if (pi != null && pi.PropertyType == typeof(CurrentAccount))
+            {
+                CurrentAccount model = new CurrentAccount();
+                Extract modelE = new Extract();
+                model.Id = 1;
+                model.Limit = 10m;
+                model.Balance = 10m;
+                modelE.Id = 1;
+                modelE.OutPut = 10m;
+                modelE.Entry = 10m;
+                model.Extract = modelE;
+                model.AccountNumber = 1;
+                pi.SetValue(ad, model);
+                valueProp = pi.GetValue(ad);
+            }
+            Assert.NotNull(valueProp);
+        }
     }
 }
