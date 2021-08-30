@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestFinanceiro.Repository
 {
-    class TestLojaRepository : TesteRepositories<LojaModel, LojaModelRepository>
+    class TestTaxRepository : TesteRepositories<Tax,TaxRepository>
     {
     }
 }
